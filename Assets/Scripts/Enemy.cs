@@ -7,11 +7,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] public float speed = 10f;
 
     private Transform target;
+    private Animator anim;
     private int wavepointIndex = 0;
     // Start is called before the first frame update
     void Start()
     {
         target = Waypoints.points[0];
+        anim = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -35,5 +37,10 @@ public class Enemy : MonoBehaviour
         }
         wavepointIndex++;
         target = Waypoints.points[wavepointIndex];
+    }
+
+    public void death(){
+        anim.SetTrigger("Death");
+        Destroy(gameObject,.5f);
     }
 }
