@@ -9,36 +9,57 @@ public class Bullet : MonoBehaviour
     public SpriteRenderer sprite;
     public float speed = 15f;
     public float explosionRadius = 0f;
+    public int damage = 1;
     //public GameObject explosionRad;
     private Animator anim;
     public void Seek (Transform _target){
         target = _target;
+        transform.LookAt(target);
+        transform.Rotate(new Vector3(0, 90));
     }
     void Start() {
         anim = gameObject.GetComponent<Animator>();
         sprite = gameObject.GetComponent<SpriteRenderer>();
+        Invoke("Die", 10f); //eventual destruction
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(target == null){
-            Destroy(gameObject);
-            return;
+        
+        if (target.gameObject.GetComponent<Enemy>().isAlive())
+        {
+            transform.LookAt(target);
+            transform.Rotate(new Vector3(0, 90));       //note: No way to specify the direction of the sprite in Unity, so the 'forward'
+                                                        //for the GameObject is not the 'forward' we want, so we rotate it whenever we change
+                                                        //direction to look at the target
         }
-
-        Vector3 dir = target.position - transform.position;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle+180f, Vector3.forward);
 
         float distanceThisFrame = speed * Time.deltaTime;
-        
-        if(dir.magnitude <= distanceThisFrame){
-            HitTarget();
+        Vector3 dir = transform.TransformDirection(Vector3.left);
+        Vector3 delta = dir * distanceThisFrame;
+        transform.Translate(delta,Space.World);
+  
+
+        /*
+        Vector3 dir = target.position - transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle + 180f, Vector3.forward);
+
+        float distanceThisFrame = speed * Time.deltaTime;
+
+        //remove, now being done with colliders
+        if (dir.magnitude <= distanceThisFrame)
+        {
+            //HitTarget();
             return;
         }
+        transform.Translate(dir.normalized * distanceThisFrame, Space.World);
+        */
+        
+        
 
-        transform.Translate (dir.normalized * distanceThisFrame, Space.World);
+        
     }
 
     void HitTarget(){
@@ -49,7 +70,7 @@ public class Bullet : MonoBehaviour
             explode();
         }
         else {
-            damage(target);
+            Damage(target);
         }
         Destroy(gameObject,.3f);
     }
@@ -59,10 +80,15 @@ public class Bullet : MonoBehaviour
         Debug.Log(colliders[0]);
         foreach(Collider2D col in colliders){
             if(col.tag == "Enemy"){
-                damage(col.transform);
+                Damage(col.gameObject.GetComponent<Enemy>());
             }
         }
         showExplosion();
+    }
+
+    void Die()
+    {
+        Destroy(gameObject, 0f);
     }
 
     void showExplosion(){
@@ -71,9 +97,36 @@ public class Bullet : MonoBehaviour
         sprite.color = new Color(1f,1f,1f,.5f);
         transform.localScale = new Vector3(explosionRadius*2, explosionRadius*2,0f);
     }
-    void damage (Transform enemy){
+
+    //unused now
+    void Damage(Transform enemy){
         Enemy enem = enemy.gameObject.GetComponent<Enemy>();
         enem.death();
+    }
+
+    void Damage(Enemy enemy)
+    {
+        enemy.Hit(damage);
+        //enemy.death();
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+
+        Debug.Log(other.gameObject.tag);
+        //if colliding with an enemy
+        if (other.gameObject.tag.Equals("Enemy"))
+        {
+            //tell enemy we got hit
+            Damage(other.gameObject.GetComponent<Enemy>());
+            if(explosionRadius > 0f)
+            {
+                explode();
+            }
+            //destroy ourselves
+            Destroy(gameObject, 0f);
+        }
+
     }
 
     void OnDrawGizmosSelected(){
