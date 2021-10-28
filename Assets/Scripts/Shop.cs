@@ -11,4 +11,8 @@ public class Shop : MonoBehaviour
        Debug.Log("purchased standard turret");
        bm.setTurretToBuild(bm.standardTurretPrefab);
    }
+   public void purchaseExplosiveTurret(){
+       Debug.Log("purchases explosive turret");
+       bm.setTurretToBuild(bm.explosiveTurretPrefab);
+   }
 }
