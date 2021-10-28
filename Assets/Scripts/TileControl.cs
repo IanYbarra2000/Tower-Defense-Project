@@ -35,7 +35,7 @@ public class TileControl : MonoBehaviour
     }
 
     void build(){
-        if(turret != null){
+        if(turret != null || !mouseInBounds()){
             Debug.Log("Can't build here");
             return;
         }
@@ -50,5 +50,10 @@ public class TileControl : MonoBehaviour
     Vector3Int GetMousePosition () {
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         return gridLayout.WorldToCell(mouseWorldPos);
+    }
+
+    bool mouseInBounds(){
+        Vector3 pos = GetMousePosition();
+        return (pos.y<4f&&pos.y>-4f&&pos.x<6f&&pos.x>-8f);
     }
 }
