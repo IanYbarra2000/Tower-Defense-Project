@@ -6,11 +6,17 @@ public class Bullet : MonoBehaviour
 {
     // Start is called before the first frame update
     private Transform target;
-
+    public SpriteRenderer sprite;
     public float speed = 15f;
-
+    public float explosionRadius = 0f;
+    //public GameObject explosionRad;
+    private Animator anim;
     public void Seek (Transform _target){
         target = _target;
+    }
+    void Start() {
+        anim = gameObject.GetComponent<Animator>();
+        sprite = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -36,10 +42,42 @@ public class Bullet : MonoBehaviour
     }
 
     void HitTarget(){
-        Destroy(gameObject);
+        
 
         //Debug.Log(target.gameObject);
-        Enemy enem = target.gameObject.GetComponent<Enemy>();
+        if(explosionRadius > 0f){
+            explode();
+        }
+        else {
+            damage(target);
+        }
+        Destroy(gameObject,.3f);
+    }
+
+    void explode(){
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position,explosionRadius);
+        Debug.Log(colliders[0]);
+        foreach(Collider2D col in colliders){
+            if(col.tag == "Enemy"){
+                damage(col.transform);
+            }
+        }
+        showExplosion();
+    }
+
+    void showExplosion(){
+        Debug.Log("animation");
+        anim.SetTrigger("Exploded");
+        sprite.color = new Color(1f,1f,1f,.5f);
+        transform.localScale = new Vector3(explosionRadius*2, explosionRadius*2,0f);
+    }
+    void damage (Transform enemy){
+        Enemy enem = enemy.gameObject.GetComponent<Enemy>();
         enem.death();
+    }
+
+    void OnDrawGizmosSelected(){
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position,explosionRadius);
     }
 }

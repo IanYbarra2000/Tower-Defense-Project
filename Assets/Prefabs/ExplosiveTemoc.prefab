@@ -98,5 +98,5 @@ MonoBehaviour:
   fireRate: 1
   fireCountdown: 0
   enemyTag: Enemy
-  bulletPrefab: {fileID: 842238766810900758, guid: 2558c81cb7e98954fa971a6f04d07913,
+  bulletPrefab: {fileID: 1198923748364704567, guid: 3cc72d3b7378f1b46bed369301ca1b94,
     type: 3}
