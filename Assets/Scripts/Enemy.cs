@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     private Transform target;
     private Animator anim;
     private int wavepointIndex = 0;
+    public int health = 1;
+    private bool alive = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +41,23 @@ public class Enemy : MonoBehaviour
         target = Waypoints.points[wavepointIndex];
     }
 
+    public bool isAlive()
+    {
+        return alive;
+    }
+
+    public void Hit(int damage)
+    {
+        health -= damage;
+        if(health <= 0)
+        {
+            death();
+        }
+    }
+
     public void death(){
+        alive = false;
+        GetComponent<BoxCollider2D>().enabled = false;//disable future collisions
         anim.SetTrigger("Death");
         Destroy(gameObject,.5f);
     }
