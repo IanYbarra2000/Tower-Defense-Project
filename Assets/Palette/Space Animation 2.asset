@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
-  m_Name: StraigtEnergyBridge
+  m_Name: Space Animation 2
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7158233435743605025, guid: 25b5b2c7636aeeb4fa970c1d9cb1ceed, type: 3}
+  - {fileID: -8000309650054238568, guid: 25b5b2c7636aeeb4fa970c1d9cb1ceed, type: 3}
+  - {fileID: 3504719685100405592, guid: 25b5b2c7636aeeb4fa970c1d9cb1ceed, type: 3}
+  - {fileID: 3462440391972654355, guid: 25b5b2c7636aeeb4fa970c1d9cb1ceed, type: 3}
   m_MinSpeed: 1
   m_MaxSpeed: 1
   m_AnimationStartTime: 0
