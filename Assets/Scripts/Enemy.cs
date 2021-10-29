@@ -11,11 +11,13 @@ public class Enemy : MonoBehaviour
 
     private Animator anim;
     private int wavepointIndex = 0;
+    private int maxHealth;
     public int health = 1;
     private bool alive = true;
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = health;
         target = Waypoints.points[0];
         anim = gameObject.GetComponent<Animator>();
     }
@@ -65,7 +67,7 @@ public class Enemy : MonoBehaviour
     }
 
     public void death(){
-        
+        PlayerStats.Money += maxHealth;
         alive = false;
         GetComponent<BoxCollider2D>().enabled = false;//disable future collisions
 

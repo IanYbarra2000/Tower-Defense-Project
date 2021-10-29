@@ -47,6 +47,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -97,6 +98,7 @@ MonoBehaviour:
   range: 3
   fireRate: 1
   fireCountdown: 0
+  price: 50
   enemyTag: Enemy
   bulletPrefab: {fileID: 842238766810900758, guid: 2558c81cb7e98954fa971a6f04d07913,
     type: 3}

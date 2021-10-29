@@ -98,6 +98,7 @@ MonoBehaviour:
   range: 3
   fireRate: 0.5
   fireCountdown: 0
+  price: 100
   enemyTag: Enemy
   bulletPrefab: {fileID: 1198923748364704567, guid: 3cc72d3b7378f1b46bed369301ca1b94,
     type: 3}
