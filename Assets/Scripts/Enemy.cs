@@ -5,8 +5,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] public float speed = 10f;
-
+    public GameObject explosionSprite;
+    public float deathTime=.5f;
     private Transform target;
+
     private Animator anim;
     private int wavepointIndex = 0;
     public int health = 1;
@@ -21,6 +23,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(alive){
+            Move();
+        }
+    }
+
+    void Move(){
         Vector2 dir = target.position - transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
@@ -31,7 +39,6 @@ public class Enemy : MonoBehaviour
             GetNextWaypoint();
         }
     }
-
     void GetNextWaypoint()
     {
         if(wavepointIndex>= Waypoints.points.Length - 1)
@@ -58,9 +65,13 @@ public class Enemy : MonoBehaviour
     }
 
     public void death(){
+        
         alive = false;
         GetComponent<BoxCollider2D>().enabled = false;//disable future collisions
-        anim.SetTrigger("Death");
-        Destroy(gameObject,.5f);
+
+        GameObject expl = (GameObject)Instantiate(explosionSprite,transform.position,new Quaternion(0f,0f,0f,0f));
+
+        Destroy(expl,deathTime);
+        Destroy(gameObject); //making death instant because of glitch delayed death causes with missed shots
     }
 }

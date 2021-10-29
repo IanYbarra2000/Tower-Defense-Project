@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     // Start is called before the first frame update
     private Transform target;
-    public SpriteRenderer sprite;
+    public GameObject explosionPrefab;
     public float speed = 15f;
     public float explosionRadius = 0f;
     public int damage = 1;
@@ -19,15 +19,13 @@ public class Bullet : MonoBehaviour
     }
     void Start() {
         anim = gameObject.GetComponent<Animator>();
-        sprite = gameObject.GetComponent<SpriteRenderer>();
         Invoke("Die", 10f); //eventual destruction
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (target.gameObject.GetComponent<Enemy>().isAlive())
+        if (target!=null)
         {
             transform.LookAt(target);
             transform.Rotate(new Vector3(0, 90));       //note: No way to specify the direction of the sprite in Unity, so the 'forward'
@@ -77,7 +75,7 @@ public class Bullet : MonoBehaviour
 
     void explode(){
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position,explosionRadius);
-        Debug.Log(colliders[0]);
+        //Debug.Log(colliders[0]);
         foreach(Collider2D col in colliders){
             if(col.tag == "Enemy"){
                 Damage(col.gameObject.GetComponent<Enemy>());
@@ -92,10 +90,13 @@ public class Bullet : MonoBehaviour
     }
 
     void showExplosion(){
-        Debug.Log("animation");
-        anim.SetTrigger("Exploded");
-        sprite.color = new Color(1f,1f,1f,.5f);
-        transform.localScale = new Vector3(explosionRadius*2, explosionRadius*2,0f);
+        //Debug.Log("animation");
+        //anim.SetTrigger("Exploded");
+        GameObject expl =  (GameObject)Instantiate(explosionPrefab,transform.position,new Quaternion());
+        
+        expl.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,.5f);
+        expl.transform.localScale = new Vector3(explosionRadius*2, explosionRadius*2,0f);
+        Destroy(expl,.2f);
     }
 
     //unused now
@@ -113,7 +114,7 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
 
-        Debug.Log(other.gameObject.tag);
+        //Debug.Log(other.gameObject.tag);
         //if colliding with an enemy
         if (other.gameObject.tag.Equals("Enemy"))
         {
@@ -130,6 +131,10 @@ public class Bullet : MonoBehaviour
     }
 
     void OnDrawGizmosSelected(){
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position,explosionRadius);
+    }
+    void OnDrawGizmos(){
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position,explosionRadius);
     }

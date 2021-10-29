@@ -84,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &-7704256637025218832
@@ -100,6 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  explosionSprite: {fileID: 3114889329456017105, guid: 8151908510d759c43812ca460f886b37,
+    type: 3}
+  deathTime: 0.5
   health: 1
 --- !u!95 &-3520466653724056734
 Animator:

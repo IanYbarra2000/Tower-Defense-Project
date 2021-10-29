@@ -98,9 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4533b36eabdff6149934bbdda262655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  explosionPrefab: {fileID: 3114889329456017105, guid: 8151908510d759c43812ca460f886b37,
+    type: 3}
   speed: 15
-  explosionRadius: 2
+  explosionRadius: 1.5
+  damage: 1
 --- !u!95 &-292990219481167197
 Animator:
   serializedVersion: 3
