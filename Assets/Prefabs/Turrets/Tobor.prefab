@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6699282234448464990}
   - component: {fileID: 6699282234448464977}
   - component: {fileID: 6699282234448464976}
+  - component: {fileID: 1095255923}
   m_Layer: 0
   m_Name: Tobor
   m_TagString: Untagged
@@ -107,3 +108,22 @@ MonoBehaviour:
   - {fileID: 3690001170531736267, guid: 986f7a29e35e40b489d61ce9e631e787, type: 3}
   - {fileID: 1376807987937594605, guid: 3d8b669cd7fd93046ae6e0877b6e8061, type: 3}
   - {fileID: 2831305870615808004, guid: 54d4ac4a79d700a47862f24b805b477f, type: 3}
+--- !u!95 &1095255923
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6699282234448464979}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 43de6e2ae930d3a469edcedb829e06bd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

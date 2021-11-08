@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 910808155945732673}
   - component: {fileID: 8710924723375939555}
   - component: {fileID: 4320605374980727823}
+  - component: {fileID: 1097483711}
   m_Layer: 0
   m_Name: ExplosiveTemoc
   m_TagString: Untagged
@@ -95,10 +96,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1ac000b8e819d4bbef6e6b6e934b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   range: 3
   fireRate: 0.5
   fireCountdown: 0
   price: 100
+  rotationOffset: 90
   enemyTag: Enemy
   bulletPrefab:
   - {fileID: 1198923748364704567, guid: 3cc72d3b7378f1b46bed369301ca1b94, type: 3}
+--- !u!95 &1097483711
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525190489242004537}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0acdedf0d3d69284ab46f01529661dfa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

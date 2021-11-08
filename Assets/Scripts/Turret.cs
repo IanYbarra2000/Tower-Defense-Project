@@ -18,11 +18,13 @@ public class Turret : MonoBehaviour
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
     public GameObject[] bulletPrefab;
-    //public Transform firePoint;
+    
+    private Animator anim;
     
     // Start is called before the first frame update
     void Start()
     {
+        anim = gameObject.GetComponent<Animator>();
         InvokeRepeating("UpdateTarget", 0f,.5f);
         
     }
@@ -79,6 +81,7 @@ public class Turret : MonoBehaviour
     }
     void Shoot() {
         int index = Random.Range(0,bulletPrefab.Length);
+        anim.SetTrigger("Shooting");
 
         GameObject bulletGO = (GameObject)Instantiate (bulletPrefab[index], transform.position,transform.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();

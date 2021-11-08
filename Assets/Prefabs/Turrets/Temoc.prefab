@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7823554625685105104}
   - component: {fileID: 7823554625685105119}
   - component: {fileID: 2750114307789826653}
+  - component: {fileID: 5268669786996514758}
   m_Layer: 0
   m_Name: Temoc
   m_TagString: Untagged
@@ -95,10 +96,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1ac000b8e819d4bbef6e6b6e934b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   range: 3
   fireRate: 1
   fireCountdown: 0
   price: 50
+  rotationOffset: 90
   enemyTag: Enemy
   bulletPrefab:
   - {fileID: 842238766810900758, guid: 2558c81cb7e98954fa971a6f04d07913, type: 3}
+--- !u!95 &5268669786996514758
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7823554625685105118}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2abb3528ae7e9543af85deb9f34b6bb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
