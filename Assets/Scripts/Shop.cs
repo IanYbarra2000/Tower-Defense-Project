@@ -4,6 +4,7 @@ public class Shop : MonoBehaviour
 {
     public TurretBlueprint standard;
     public TurretBlueprint missile;
+    public TurretBlueprint Tobor;
     BuildManager bm;
     void Start(){
         bm = BuildManager.instance;
@@ -16,5 +17,9 @@ public class Shop : MonoBehaviour
    public void selectExplosiveTurret(){
        Debug.Log("purchases explosive turret");
        bm.setTurretToBuild(missile);
+   }
+   public void selectFreezeTurret(){
+       Debug.Log("purchases freeze turret");
+       bm.setTurretToBuild(Tobor);
    }
 }

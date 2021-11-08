@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    private Transform target;
+    [HideInInspector]
+    public Transform target;
     
 
     [Header("Attributes")]
@@ -12,10 +13,11 @@ public class Turret : MonoBehaviour
     public float fireRate = 1f;
     public float fireCountdown = 0f;
     public int price =0;
+    public float rotationOffset = 90;
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
-    public GameObject bulletPrefab;
+    public GameObject[] bulletPrefab;
     //public Transform firePoint;
     
     // Start is called before the first frame update
@@ -73,10 +75,12 @@ public class Turret : MonoBehaviour
         
         Vector3 dir = target.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle+90f, Vector3.forward);
+        transform.rotation = Quaternion.AngleAxis(angle+rotationOffset, Vector3.forward);
     }
     void Shoot() {
-        GameObject bulletGO = (GameObject)Instantiate (bulletPrefab, transform.position,transform.rotation);
+        int index = Random.Range(0,bulletPrefab.Length);
+
+        GameObject bulletGO = (GameObject)Instantiate (bulletPrefab[index], transform.position,transform.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
 
         if(bullet!= null){

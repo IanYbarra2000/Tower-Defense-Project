@@ -105,7 +105,7 @@ public class Bullet : MonoBehaviour
         enem.death();
     }
 
-    void Damage(Enemy enemy)
+    public virtual void Damage(Enemy enemy)
     {
         enemy.Hit(damage);
         //enemy.death();

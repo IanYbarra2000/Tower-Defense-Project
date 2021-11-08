@@ -13,10 +13,14 @@ public class Enemy : MonoBehaviour
     private int wavepointIndex = 0;
     private int maxHealth;
     public int health = 1;
+
+    [HideInInspector]
+    public bool slowed;
     private bool alive = true;
     // Start is called before the first frame update
     void Start()
     {
+        slowed = false;
         maxHealth = health;
         target = Waypoints.points[0];
         anim = gameObject.GetComponent<Animator>();
@@ -65,7 +69,20 @@ public class Enemy : MonoBehaviour
             death();
         }
     }
-
+    public void Slow(float time){
+        if(!slowed){
+            slowed = true;
+            gameObject.GetComponent<SpriteRenderer>().color = Color.blue; //To easily indicate the object has been slowed
+            speed = speed/2;
+            Invoke("UnSlow",time);
+        }
+        
+    }
+    void UnSlow(){
+        slowed = false;
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,1f);
+        speed = speed*2;
+    }
     public void death(){
         PlayerStats.Money += maxHealth;
         alive = false;
