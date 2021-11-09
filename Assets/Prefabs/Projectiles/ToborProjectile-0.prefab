@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 0}
+  hitEffectPrefab: {fileID: 2667903704672565978, guid: 5047cd2d6e0303544811148d871ff43b,
+    type: 3}
   speed: 15
   explosionRadius: 0
   damage: 1

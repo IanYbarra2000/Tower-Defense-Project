@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     private Transform target;
     public GameObject explosionPrefab;
+    public GameObject hitEffectPrefab;
     public float speed = 15f;
     public float explosionRadius = 0f;
     public int damage = 1;
@@ -120,6 +121,9 @@ public class Bullet : MonoBehaviour
         {
             //tell enemy we got hit
             Damage(other.gameObject.GetComponent<Enemy>());
+            GameObject effect = (GameObject)Instantiate(hitEffectPrefab, other.gameObject.transform.position,other.gameObject.transform.rotation);
+            print(effect);
+            Destroy(effect, 2f);
             if(explosionRadius > 0f)
             {
                 explode();
