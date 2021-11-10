@@ -16,7 +16,7 @@ PrefabInstance:
     - target: {fileID: 3690001170531736267, guid: 986f7a29e35e40b489d61ce9e631e787,
         type: 3}
       propertyPath: m_Name
-      value: ToborProjectile-1
+      value: ToborProjectile-1 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3791249250198581100, guid: 986f7a29e35e40b489d61ce9e631e787,
         type: 3}
