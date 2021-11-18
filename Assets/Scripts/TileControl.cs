@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
 
 public class TileControl : MonoBehaviour
 {
@@ -52,6 +53,8 @@ public class TileControl : MonoBehaviour
     }
     Vector3Int GetMousePosition () {
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        
         return gridLayout.WorldToCell(mouseWorldPos);
     }
 
@@ -59,7 +62,22 @@ public class TileControl : MonoBehaviour
         return pathMap.HasTile(mousePos);
     }
     bool mouseInBounds(){
-        Vector3 pos = GetMousePosition();
-        return (pos.y<4f&&pos.y>-4f&&pos.x<6f&&pos.x>-8f);
+        
+        /*
+        //Work in progress attempt to get edge tiles to not be valid turret positions. Might come back to this.
+
+        Vector3 cellSize = interactiveMap.cellSize;
+
+        Vector3Int cellPosition = interactiveMap.LocalToCell(GetMousePosition());
+
+        float cellUpperBound = cellPosition.y+cellSize.y;
+        float cellLowerBound = cellPosition.y-cellSize.y;
+        float cellLeftBound = cellPosition.x-cellSize.x;
+        float cellRightBound = cellPosition.x+cellSize.x;
+        */
+
+        
+
+        return !EventSystem.current.IsPointerOverGameObject();
     }
 }
