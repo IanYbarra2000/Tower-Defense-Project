@@ -32,7 +32,7 @@ public class WaveSpawner : MonoBehaviour
     IEnumerator SpawnWave()
     {
         waveIndex++;
-        print("Spawn wave "+waveIndex); 
+        //print("Spawn wave "+waveIndex); 
         for (int i = 0; i < waveIndex; i++)
         {
             int spawnIndex = chooseEnemy(waveIndex-i);//chooses which enemy to spawn
@@ -51,7 +51,7 @@ public class WaveSpawner : MonoBehaviour
         */
 
         int start = Random.Range(0,enemyPrefabs.Length);
-        print("random num ="+start);
+        //print("random num ="+start);
         for (int i = start;i>=0;i--){
             if(enemyPrefabs[i].gameObject.GetComponent<Enemy>().health <= healthLeft){
                 return i;
