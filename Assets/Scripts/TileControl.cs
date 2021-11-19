@@ -29,7 +29,7 @@ public class TileControl : MonoBehaviour
         mousePos = GetMousePosition();
 
         if (!mousePos.Equals(previousMousePos)) {
-            print("new mouse pos");
+            //print("new mouse pos");
             interactiveMap.SetTile(previousMousePos, null); // Remove old hoverTile
             interactiveMap.SetTile(mousePos, hoverTile);
             previousMousePos = mousePos;

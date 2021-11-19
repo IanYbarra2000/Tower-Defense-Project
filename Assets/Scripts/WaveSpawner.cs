@@ -9,7 +9,8 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] public Transform spawnPoint;
     [SerializeField] public float timeBetweenWaves = 5f;
     [SerializeField] public float timeBetweenEnemies = 0.2f; 
-    [SerializeField] public float countdown = 2f;
+    [SerializeField] public float countdown = 1f;
+    public GameObject nextWave;
 
     private int waveIndex = 0; //acts as a count for which wave is happening and a count for the amount of total enemy health allowed for the wave
     void Start()
@@ -22,27 +23,40 @@ public class WaveSpawner : MonoBehaviour
     {
         if (countdown <= 0f)
         {
-            StartCoroutine(SpawnWave());
-            countdown = timeBetweenWaves;
+            StartCoroutine(checkEnemies());
+            countdown = 1f;
         }
-
         countdown -= Time.deltaTime;
     }
 
-    IEnumerator SpawnWave()
+    public void spawnWaveWrapper(){
+        StartCoroutine(SpawnWave());
+    }
+    public IEnumerator SpawnWave()
     {
+        nextWave.SetActive(false);
         waveIndex++;
+        int lives = LivesIncrementer();
+        print("lives: "+lives);
         //print("Spawn wave "+waveIndex); 
-        for (int i = 0; i < waveIndex; i++)
+        for (int i = 0; i < lives; i++)
         {
-            int spawnIndex = chooseEnemy(waveIndex-i);//chooses which enemy to spawn
+            int spawnIndex = chooseEnemy(lives-i);//chooses which enemy to spawn
             SpawnEnemy(spawnIndex);
             i += enemyPrefabs[spawnIndex].gameObject.GetComponent<Enemy>().health-1;
             yield return new WaitForSeconds(timeBetweenEnemies);
         }
+        print("set active false");
         
     }
 
+    IEnumerator checkEnemies() {
+        
+        if(GameObject.FindGameObjectsWithTag("Enemy").Length ==0){
+            nextWave.SetActive(true);
+            yield return new WaitForSeconds(0f);
+        }
+    }
     int chooseEnemy(int healthLeft){
         /* 
         Chooses random enemy to spawn so long as it it doesn't
@@ -62,5 +76,8 @@ public class WaveSpawner : MonoBehaviour
     void SpawnEnemy(int index)
     {
         Instantiate(enemyPrefabs[index], spawnPoint.position,spawnPoint.rotation);
+    }
+    int LivesIncrementer(){
+        return (int)Mathf.Floor(Mathf.Pow((float)waveIndex,1.4f));
     }
 }
