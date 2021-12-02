@@ -49,6 +49,8 @@ public class Enemy : MonoBehaviour
     {
         if(wavepointIndex>= Waypoints.points.Length - 1)
         {
+            PlayerStats.lives-=health;
+            print(PlayerStats.lives);
             Destroy(gameObject);
             return;
         }
