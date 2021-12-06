@@ -7,7 +7,7 @@ public class MoneyUI : MonoBehaviour
 {
     public Text moneyDisplay;
 
-    // Update is called once per frame
+    // Don't really like how this is implemented, maybe it would be better with a different name like UI updater and we can put all UI that needs to be updated here
     void Update()
     {
         moneyDisplay.text = "$"+PlayerStats.Money;

@@ -26,18 +26,21 @@ public class TileControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mousePos = GetMousePosition();
+        if(Time.timeScale>0f){
+            mousePos = GetMousePosition();
 
-        if (!mousePos.Equals(previousMousePos)) {
-            //print("new mouse pos");
-            interactiveMap.SetTile(previousMousePos, null); // Remove old hoverTile
-            interactiveMap.SetTile(mousePos, hoverTile);
-            previousMousePos = mousePos;
-        }
+            if (!mousePos.Equals(previousMousePos)) {
+                //print("new mouse pos");
+                interactiveMap.SetTile(previousMousePos, null); // Remove old hoverTile
+                interactiveMap.SetTile(mousePos, hoverTile);
+                previousMousePos = mousePos;
+            }
 
-        if(Input.GetMouseButtonDown(0)){
-            build();
+            if(Input.GetMouseButtonDown(0)){
+                build();
+            }
         }
+        
     }
 
     void build(){

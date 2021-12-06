@@ -8,7 +8,6 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
 
     public GameObject pauseMenuUI;
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -40,8 +39,9 @@ public class PauseMenu : MonoBehaviour
     public void MenuButton()
 
     {
+        GameIsPaused = false;
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("TDMainMenu");
     }
 
     public void QuitButton()

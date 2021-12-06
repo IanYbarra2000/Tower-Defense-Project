@@ -20,14 +20,17 @@ public class BuildManager : MonoBehaviour
     public GameObject explosiveTurretPrefab;
 
     public void buildTurretOn(Vector3 position){
-        if(PlayerStats.Money < turretToBuild.cost){
-            Debug.Log("not enough money");
-            return;
-        }
+        if(canBuild){
+            if(PlayerStats.Money < turretToBuild.cost){
+                Debug.Log("not enough money");
+                return;
+            }
 
-        PlayerStats.Money -= turretToBuild.cost;
-        GameObject turretPlaced = (GameObject)Instantiate(turretToBuild.prefab,position,new Quaternion(0f,0f,0f,0f));
-        Debug.Log("Money="+PlayerStats.Money);
+            PlayerStats.Money -= turretToBuild.cost;
+            GameObject turretPlaced = (GameObject)Instantiate(turretToBuild.prefab,position,new Quaternion(0f,0f,0f,0f));
+            Debug.Log("Money="+PlayerStats.Money);
+        }
+        
         
     }
     

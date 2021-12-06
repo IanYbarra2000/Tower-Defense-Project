@@ -12,6 +12,8 @@ public class PlayerStats : MonoBehaviour
     public int startLives =30;
     public int startMoney=100;
 
+    public Text livesDisplay;
+
     private float countdown=1f;
     void Start()
     {
@@ -22,6 +24,7 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        livesDisplay.text = "Lives: "+ lives;
          if (countdown <= 0f)
         {
             StartCoroutine(GameOver());
