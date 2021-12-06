@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] public float timeBetweenEnemies = 0.2f; 
     [SerializeField] public float countdown = 1f;
     public GameObject nextWave;
+    public int maxWave = 20;
+    public int stage;
 
     private int waveIndex = 0; //acts as a count for which wave is happening and a count for the amount of total enemy health allowed for the wave
     void Start()
@@ -34,6 +38,8 @@ public class WaveSpawner : MonoBehaviour
     }
     public IEnumerator SpawnWave()
     {
+        if(maxWave<=waveIndex)
+            SceneManager.LoadScene("Stage"+(stage+1));
         nextWave.SetActive(false);
         waveIndex++;
         int lives = LivesIncrementer();
@@ -48,11 +54,17 @@ public class WaveSpawner : MonoBehaviour
         }
         print("set active false");
         
+        
     }
 
     IEnumerator checkEnemies() {
         
+        
         if(GameObject.FindGameObjectsWithTag("Enemy").Length ==0){
+            if(maxWave<=waveIndex){
+                
+                nextWave.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Next Stage";
+            }
             nextWave.SetActive(true);
             yield return new WaitForSeconds(0f);
         }

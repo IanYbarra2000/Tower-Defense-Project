@@ -11,10 +11,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOverScreen.unity
     guid: 41a761c3faf6dc349854b187668b6ac4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PauseMenu.unity
     guid: 90c9a052413183245aa1ff69ff6a334a
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Stage1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Stage0.unity
+    guid: 07e67cef9c2f7c342be211cd56ceb656
+  - enabled: 1
+    path: Assets/Scenes/Stage3.unity
+    guid: 5cdcb558b79369448a96a2125eda4c06
+  - enabled: 1
+    path: Assets/Scenes/Stage2.unity
+    guid: a687cc441ba3a7c469a2983aad826e8c
   m_configObjects: {}
