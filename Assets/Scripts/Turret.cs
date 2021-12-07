@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Turret : MonoBehaviour
 {
@@ -18,12 +19,14 @@ public class Turret : MonoBehaviour
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
     public GameObject[] bulletPrefab;
+    public GameObject attackRangeImage;
     
     private Animator anim;
     
     // Start is called before the first frame update
     void Start()
     {
+        attackRangeImage.transform.localScale = new Vector3(range*2f,range*2f,0f);
         anim = gameObject.GetComponent<Animator>();
         InvokeRepeating("UpdateTarget", 0f,.5f);
         
@@ -95,5 +98,13 @@ public class Turret : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
+    }
+
+    void OnMouseOver(){
+        attackRangeImage.SetActive(true);
+       
+    }
+    void OnMouseExit(){
+        attackRangeImage.SetActive(false);
     }
 }

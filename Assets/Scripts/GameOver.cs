@@ -8,7 +8,7 @@ public class GameOver : MonoBehaviour
 {
     // Start is called before the first frame update
     public void RestartButton(){
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Stage0");
     }
 
     // Update is called once per frame
